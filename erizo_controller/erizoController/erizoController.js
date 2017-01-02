@@ -773,9 +773,10 @@ var listen = function () {
                callback(null, 'Stream can not be recorded');
             }
 
-            if (socket.room.streams[streamId].hasAudio() ||
+	    if (streamId !== undefined && socket.room.streams[streamId] !== undefined && 
+                (socket.room.streams[streamId].hasAudio() ||
                 socket.room.streams[streamId].hasVideo() ||
-                socket.room.streams[streamId].hasScreen()) {
+                socket.room.streams[streamId].hasScreen())) {
 
                 socket.room.controller.addExternalOutput(streamId, url, function (result) {
                     if (result === 'success') {

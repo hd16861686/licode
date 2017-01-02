@@ -352,7 +352,7 @@ void ExternalOutput::writeVideoData(char* buf, int len) {
           int ret = av_interleaved_write_frame(context_, &avpkt); // takes ownership of the packet
 
           //ELOG_ERROR("sending video packet PTS = %lld", firstPTS);
-          ELOG_ERROR("av_interleaved_write_frame for video with size %d returned %d", size1, ret);
+          //ELOG_ERROR("av_interleaved_write_frame for video with size %d returned %d", size1, ret);
           firstPTS = 0;
         }
 		}
@@ -396,16 +396,21 @@ bool ExternalOutput::initContext() {
 
 		m_videoEncoderCodecInfo.codec = VIDEO_CODEC_H264;
 		m_videoEncoderCodecInfo.payloadType = 96;
-		m_videoEncoderCodecInfo.width = 640;//320;
-		m_videoEncoderCodecInfo.height = 480;//240;
-		m_videoEncoderCodecInfo.bitRate = 200000;
+	//	m_videoEncoderCodecInfo.width = 640;//320;
+	//	m_videoEncoderCodecInfo.height = 480;//240;
+		m_videoEncoderCodecInfo.width = 320;//320;
+	        m_videoEncoderCodecInfo.height = 240;//240;
+		m_videoEncoderCodecInfo.bitRate = 100000;
 		m_videoEncoderCodecInfo.frameRate = 30;
 
 		m_videoDecoderCodecInfo.codec = VIDEO_CODEC_VP8;
 		m_videoDecoderCodecInfo.payloadType = VP8_90000_PT;
-		m_videoDecoderCodecInfo.width = 640;//320;
-		m_videoDecoderCodecInfo.height = 480;//240;
-		m_videoDecoderCodecInfo.bitRate = 900000;
+		//m_videoDecoderCodecInfo.width = 640;//320;
+		//m_videoDecoderCodecInfo.height = 480;//240;
+		m_videoDecoderCodecInfo.width = 320;//320;
+                m_videoDecoderCodecInfo.height = 240;//240;
+
+		m_videoDecoderCodecInfo.bitRate = 600000;
 		m_videoDecoderCodecInfo.frameRate = 30;
 
 		m_vEncoder.initEncoder(m_videoEncoderCodecInfo);
@@ -435,7 +440,7 @@ bool ExternalOutput::initContext() {
 	        ELOG_ERROR("@@NA here3");
 
 		AVCodecContext* streamCodecContext = video_stream_->codec;
-	        ELOG_ERROR("@@NA here4");
+	        ELOG_ERROR("@@NA here4 ");
 		avcodec_copy_context(streamCodecContext, m_vEncoder.vCoderContext);
 		video_stream_->codec->flags |= CODEC_FLAG_GLOBAL_HEADER;
 

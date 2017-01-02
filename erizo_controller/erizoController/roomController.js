@@ -21,7 +21,7 @@ exports.RoomController = function (spec) {
     var ecch = spec.ecch;
 
     var KEEPALIVE_INTERVAL = 5*1000;
-    var TIMEOUT_LIMIT = 2;
+    var TIMEOUT_LIMIT = 60;//2;
     var MAX_ERIZOJS_RETRIES = 0;
 
     var eventListeners = [];
