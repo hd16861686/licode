@@ -1,5 +1,9 @@
 # Licode
 
+Look at this fork: https://github.com/asafrob/licode/tree/licode-kHackathon2016-noam 115
+This guy changed the external-output to push the stream to RTMP server.
+I guess he could duplicate the output-stream functionality and create a new API instead.
+
 More info at:
 http://www.lynckia.com/licode
 
